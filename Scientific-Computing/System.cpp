@@ -29,8 +29,18 @@ System& System::operator=(System const& X){
 }
 
 System operator+(System const& X, System const& Y){
-    System Z;
-    //Calcul
+    double z;
+    //v2
+    if(X.exposant > Y.exposant){
+        z=X.mantisse + Y.mantisse/std::pow(10,X.exposant-Y.exposant);
+        z*=pow(10,X.exposant);
+    }
+    else{z=X.mantisse/std::pow(10,Y.exposant-X.exposant)+Y.mantisse;
+        z*=pow(10,Y.exposant);}
+    System Z(z);
+    return Z;
+    //v1
+    /*
     if(X.exposant > Y.exposant){
         Z.exposant=X.exposant;
         Z.mantisse=X.mantisse + Y.mantisse/std::pow(10,X.exposant-Y.exposant);
@@ -46,11 +56,23 @@ System operator+(System const& X, System const& Y){
     }
     Z.nombre=Z.mantisse*std::pow(10,Z.exposant);
     return Z;
+     */
 }
 
+System operator-(System const& X, System const& Y){
+    double z;
+    if(X.exposant > Y.exposant){
+        z=X.mantisse - Y.mantisse/std::pow(10,X.exposant-Y.exposant);
+        z*=pow(10,X.exposant);
+    }
+    else{z=X.mantisse/std::pow(10,Y.exposant-X.exposant) - Y.mantisse;
+        z*=pow(10,Y.exposant);}
+    System Z(z);
+    return Z;
+}
+
+
 std::ostream& operator<<(std::ostream &flux, System const& X){
-    flux << "Nombre : " << X.nombre << std::endl;
-    flux << "Mantisse : " << X.mantisse << std::endl;
-    flux << "Exposant : " << X.exposant << std::endl;
+    flux << X.mantisse << "*10^" << X.exposant;
     return flux;
 }

@@ -23,6 +23,9 @@ protected:
         }else{
             exposant= static_cast<int>(std::log10(std::abs(nombre)));
             mantisse = static_cast<double>(nombre)/std::pow(10,exposant);
+            mantisse = std::round(mantisse * 1000)/1000;
+            if(mantisse>=10){mantisse/=10;
+                exposant++;}
         };
     }
     
@@ -33,6 +36,7 @@ public:
     
     System& operator=(System const& X);
     friend System operator+(System const& X, System const& Y);
+    friend System operator-(System const& X, System const& Y);
     friend std::ostream& operator<<(std::ostream &flux, System const& X);
 };
 

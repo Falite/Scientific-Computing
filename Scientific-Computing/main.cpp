@@ -8,13 +8,11 @@
 #include <iostream>
 #include <bitset>
 #include "System.hpp"
-#define N 400
+#define N 10
 
 #define a 1.
 #define b 111.11
 #define c 1.2121
-
-
 
 using namespace std;
 
@@ -29,8 +27,7 @@ double r1(double x,double y,double z){
 }
 
 int main(int argc, const char * argv[]) {
-    int nombre1(1984);
-    int nombre2(2018);
+    int nombre1(1984), nombre2(2018);
     bitset<16> binaire1(nombre1);
     bitset<16> binaire2(nombre2);
     cout << nombre1 << " vaut " << binaire1 << " en binaire de 16 bits" << endl;
@@ -44,16 +41,26 @@ int main(int argc, const char * argv[]) {
     cout << " OU : " << OU << endl;
     cout << " XOU : " << XOU << endl;
     cout << endl;
+    cout << "Exercice 1 : système de base 10,3" << endl;
+    int x(10200), y(341), z(9800);
+    System X(x), Y(y), Z(z);
+    cout << " X= " << X << ", Y= " << Y << ", Z= " << Z << endl;
+    cout << " (X+Y)+Z= " << (X+Y)+Z << endl;
     
-    System X(10200);
-    cout << X << endl;
+    cout << " X+(Y+Z)= " << X+(Y+Z) << endl;
     
-    cout <<"Exercice 3 : suite à n=0 : " << suite(0) << endl;
+    cout << " X+(Y-Z)= " << X+(Y-Z) << endl;
+    
+    cout << " (X-Z)+Y= " << (X-Z)+Y << endl;
+    
+    cout << endl;
+    cout << "Exercice 3 : suite à n=0 : " << suite(0) << endl;
     cout << endl;
     for(int i=0;i<N;i++){
         cout << "suite à i=" << i << " : " << suite(i) << "  ";
         
     }
+    cout << endl;
     cout << endl;
     cout << "Exercice 5 : calcul de la racine : " << r1(a,b,c) << endl;
     return 0;
